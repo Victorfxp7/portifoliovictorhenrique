@@ -84,7 +84,7 @@ function showBackToTopButtonOnScroll() {
   }
 }
 
-openMenu();
+
 function openMenu() { z
   const openBtns = document.querySelectorAll(".open");
   openBtns.forEach((e) => {
@@ -94,7 +94,6 @@ function openMenu() { z
   });
 }
 
-closeMenu();
 function closeMenu() {
   const closeBtns = document.querySelectorAll(".close");
   closeBtns.forEach((e) => {
@@ -127,5 +126,5 @@ ScrollReveal({
 );
 
 toggle.addEventListener("change", () => {
-  document.body.classList.toggle("theme-toogle");
+  document.body.classList.toggle("light-mode");
 });
