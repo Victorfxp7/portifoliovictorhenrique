@@ -85,7 +85,7 @@ function showBackToTopButtonOnScroll() {
 }
 
 
-function openMenu() { z
+function openMenu() { 
   const openBtns = document.querySelectorAll(".open");
   openBtns.forEach((e) => {
     e.addEventListener("click", () => {
