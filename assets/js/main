@@ -127,6 +127,8 @@ ScrollReveal({
   #curriculo`
 );
 
-toggle.addEventListener("change", () => {
-  document.body.classList.toggle("light-mode");
-});
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("light-mode");
+  });
+}
