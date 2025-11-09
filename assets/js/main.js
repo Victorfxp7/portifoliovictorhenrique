@@ -89,34 +89,42 @@ function showBackToTopButtonOnScroll() {
   backToTopButton.classList.toggle("show", scrollY > 550);
 }
 
-// ===================== MENU (CÓDIGO REFATORADO) =====================
+// ===================== MENU (CÓDIGO CORRIGIDO) =====================
 
-// Seleciona todos os botões que interagem com o menu (abrir e fechar)
-const menuToggleBtns = document.querySelectorAll(".open, .close, .menu a");
+// Seleciona todos os links do menu para fechar o menu ao clicar
+const menuLinks = document.querySelectorAll(".menu a");
 
 /**
- * Alterna a classe 'menu-expanded' no body.
- * Adiciona também a função de fechar o menu ao clicar em um link.
+ * Adiciona a classe 'menu-expanded' ao body
  */
-function toggleMenu() {
-    document.body.classList.toggle("menu-expanded");
+function openMenu() {
+    // Adiciona a classe no body
+    document.body.classList.add("menu-expanded");
 }
 
-// Configura os eventos de clique para abrir/fechar o menu
-menuToggleBtns.forEach((btn) => {
-    // Para botões de abrir/fechar E LINKS (para fechar após navegar)
-    btn.addEventListener("click", () => {
-        // Se o elemento clicado for um link, ele fecha o menu.
-        // Se for um botão (.open ou .close), ele alterna o estado.
-        if (btn.tagName === 'A' || btn.classList.contains('open') || btn.classList.contains('close')) {
-            toggleMenu();
-        }
-    });
+/**
+ * Remove a classe 'menu-expanded' do body
+ */
+function closeMenu() {
+    // Remove a classe do body
+    document.body.classList.remove("menu-expanded");
+}
+
+// 1. Configura os botões para ABRIR o menu
+// (Usando a classe `.open` que você já tinha)
+document.querySelectorAll(".open").forEach((btn) => {
+    btn.addEventListener("click", openMenu);
 });
 
-// REMOVIDO: As funções 'openMenu()' e 'closeMenu()' não são mais necessárias.
-// As chamadas 'openMenu();' e 'closeMenu();' no final do script foram removidas, 
-// pois a lógica agora é aplicada via 'addEventListener' diretamente.
+// 2. Configura os botões e links para FECHAR o menu
+// (Usando a classe `.close` e os links `a`)
+document.querySelectorAll(".close").forEach((btn) => {
+    btn.addEventListener("click", closeMenu);
+});
+
+menuLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
+});
 
 
 // ===================== SCROLL REVEAL =====================
