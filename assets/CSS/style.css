@@ -334,166 +334,140 @@ nav .close-menu {
   position: fixed;
 }
 
-/*===== MENU-EXPANDED ==========================================*/
+/* --- MENU MOBILE (PADRÃO) --- */
 
+/* 1. POSICIONAMENTO BASE */
+/* Garante que o menu e o botão de fechar (quando visível) sejam fixos na tela */
+nav .menu,
+nav .close-menu {
+    position: fixed;
+    z-index: 95; /* Z-index base para o menu */
+}
+
+/* 2. CONTROLE DE SCROLL E FIXAÇÃO DO CORPO */
 body.menu-expanded {
-  overflow: hidden;
+    overflow: hidden; /* Remove a barra de rolagem */
+    position: fixed; /* Evita o "pulo" da tela em alguns navegadores */
+    width: 100%;
 }
 
-body.menu-expanded nav#navigation.scroll {
-  background: none;
-  backdrop-filter: none;
-}
-
+/* 3. CONTROLE DE VISIBILIDADE E TRANSIÇÃO (Padrão) */
 .menu,
 .close-menu,
 body.menu-expanded .open-menu {
-  opacity: 0;
-  visibility: hidden;
+    /* TRANSITION: Garante suavidade na entrada/saída */
+    transition: opacity 300ms, visibility 300ms;
+    opacity: 0;
+    visibility: hidden;
 }
 
 body.menu-expanded .menu,
 body.menu-expanded .close-menu {
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
 }
 
+/* 4. POSICIONAMENTO E ESTILO DO BOTÃO ABRIR (Open Menu) */
+.open-menu {
+    /* Torna o botão de abrir visível por padrão */
+    opacity: 1;
+    visibility: visible;
+    position: fixed; /* Fixo para que o usuário sempre possa abrir o menu */
+    top: 2rem;
+    right: 2rem;
+    z-index: 90; /* Abaixo do menu expandido */
+    cursor: pointer;
+}
+
+/* 5. ESTADO DO MENU FECHADO */
 .menu {
-  transform: translateX(100%);
+    /* TRANSITION: Curva mais elegante para o movimento de slide */
+    transition: transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateX(100%);
+    z-index: 95;
 }
 
-body.menu-expanded .menu,
-body.menu-expanded nav.scroll .menu {
-  top: 0;
-  left: 0;
-
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(1rem);
-  -webkit-backdrop-filter: blur(1rem);
-
-  width: 100vw;
-  height: 100vh;
-
-  padding-top: var(--nav-height);
-
-  transition: transform 300ms;
-  transform: translateX(0);
+/* 6. ESTADO DO MENU EXPANDIDO (Aberto) */
+body.menu-expanded .menu {
+    top: 0;
+    left: 0;
+    
+    /* MELHORIA VISUAL (Fundo escuro e blur mais elegante) */
+    background: rgba(18, 18, 18, 0.95); /* Cor mais escura para melhor contraste */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    width: 100vw;
+    height: 100vh;
+    padding-top: 10rem; /* Espaço para o cabeçalho/botão de fechar */
+    
+    transform: translateX(0); /* Entra na tela */
 }
 
+/* 7. ESTILO DOS LINKS (Limpeza e Toque) */
 .menu ul:nth-child(1) {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-
-  margin: 8rem 0 10rem 0;
-
-  font-weight: 700;
-  font-size: 2rem;
-  line-height: 3.1rem;
+    list-style: none;
+    padding: 0 4rem; /* Padding lateral */
+    margin: 4rem 0 6rem 0; /* Margem ajustada */
+    
+    display: flex;
+    flex-direction: column;
+    gap: 4rem; /* Aumento do espaçamento */
+    
+    font-weight: 500; /* Mais moderno */
+    font-size: 2.2rem; /* Mais legível */
+    line-height: 1.2;
 }
 
+.menu ul:nth-child(1) li a {
+    display: block; /* Aumenta a área de clique */
+    padding: 0.5rem 0;
+    color: var(--text-primary, #f5f5f5); /* Use variável para cor do texto principal */
+    text-decoration: none;
+    transition: color 200ms;
+}
+
+/* 8. POSICIONAMENTO E ESTILO DO BOTÃO FECHAR (Close Menu) */
+body.menu-expanded .close-menu {
+    /* Garante que o botão de fechar fique no topo e à direita, acima de todo o menu */
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 100;
+}
+
+/* Estilos para o logo/botão dentro do menu expandido */
 body.menu-expanded nav .logo,
-body.menu-expanded button {
-  position: relative;
-  z-index: 100;
+body.menu-expanded .close-menu { /* Ajuste para o botão de fechar */
+    position: fixed; /* Alterado de 'relative' para 'fixed' para acompanhar o scroll do menu */
+    z-index: 100;
 }
 
 body.menu-expanded button path {
-  stroke: white;
+    stroke: var(--text-primary, white);
 }
 
-/* --- MENU MOBILE (PADRÃO) --- */
-    nav .menu,
-    nav .close-menu {
-        position: fixed;
-    }
+/* --- LINKS SOCIAIS (Mobile e Desktop) --- */
+.social-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    list-style: none;
+    padding: 0;
+    margin-top: 5rem; /* Adicionar margem superior para separar dos links */
+}
 
-    body.menu-expanded {
-        overflow: hidden;
-    }
+/* Efeito de hover mais limpo */
+.social-links svg {
+    transition: 300ms ease;
+}
 
-    .menu,
-    .close-menu,
-    body.menu-expanded .open-menu {
-        opacity: 0;
-        visibility: hidden;
-    }
-
-    body.menu-expanded .menu,
-    body.menu-expanded .close-menu {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .menu {
-        transform: translateX(100%);
-    }
-
-    body.menu-expanded .menu,
-    body.menu-expanded nav.scroll .menu {
-        top: 0;
-        left: 0;
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(1rem);
-        -webkit-backdrop-filter: blur(1rem);
-        width: 100vw;
-        height: 100vh;
-        padding-top: var(--nav-height);
-        transition: transform 300ms;
-        transform: translateX(0);
-    }
-
-    .menu ul:nth-child(1) {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-        margin: 8rem 0 10rem 0;
-        font-weight: 700;
-        font-size: 2rem;
-        line-height: 3.1rem;
-        list-style: none;
-        padding: 0;
-    }
-    
-    .menu ul:nth-child(1) li a {
-        color: var(--primary);
-        text-decoration: none;
-    }
-
-    body.menu-expanded nav .logo,
-    body.menu-expanded button {
-        position: relative;
-        z-index: 100;
-    }
-
-    body.menu-expanded button path {
-        stroke: white;
-    }
-    
-    /* --- LINKS SOCIAIS (Mobile e Desktop) --- */
-    .social-links {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 2.5rem;
-        list-style: none;
-        padding: 0;
-    }
-
-    .social-links li {
-        height: 3rem;
-    }
-
-    .social-links svg {
-        margin-top: 0.3rem;
-        transition: 300ms;
-    }
-
-    .social-links svg:hover {
-        margin-top: 0;
-        margin-bottom: 0.3rem;
-    }
-
+.social-links svg:hover {
+    /* Remove o movimento vertical indesejado, usa transformação de escala */
+    transform: scale(1.2);
+    margin: 0;
+}
 /*===== HOME ===================================*/
 
 #home {
