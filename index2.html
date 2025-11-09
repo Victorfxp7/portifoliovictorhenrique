@@ -650,44 +650,69 @@
         </article>
     </div>
       <script>
-    // 1. Alternar a classe 'menu-expanded' no body ao clicar nos botões
-    const nav = document.getElementById('navigation');
-    const openMenuButton = document.querySelector('.open-menu');
-    const closeMenuButton = document.querySelector('.close-menu');
-    const menuLinks = document.querySelectorAll('.menu ul:first-child a');
+    // ===============================================
+// VARIÁVEIS DO MENU E ELEMENTOS GLOBAIS
+// ===============================================
 
-    function toggleMenu() {
-        document.body.classList.toggle('menu-expanded');
-    }
+const nav = document.getElementById('navigation');
+// Seus botões: verifique se as classes no HTML são .open-menu e .close-menu
+const openMenuButton = document.querySelector('.open-menu');
+const closeMenuButton = document.querySelector('.close-menu');
+// Seleciona todos os links do menu para fechar o menu após a navegação
+const menuLinks = document.querySelectorAll('.menu ul:first-child a');
 
-    // Adiciona evento aos botões de abrir/fechar
+
+// ===============================================
+// 1. FUNÇÕES DO MENU MÓVEL
+// ===============================================
+
+/**
+ * Alterna a classe 'menu-expanded' no body.
+ * Esta função abre ou fecha o menu dependendo do estado atual.
+ */
+function toggleMenu() {
+    // CORREÇÃO: Usar .toggle() em vez de .add() ou .remove() em separado.
+    document.body.classList.toggle('menu-expanded');
+}
+
+// Verifica se os botões existem antes de adicionar o evento (evita erros)
+if (openMenuButton) {
+    // Adiciona evento de clique que alterna o estado
     openMenuButton.addEventListener('click', toggleMenu);
+}
+if (closeMenuButton) {
     closeMenuButton.addEventListener('click', toggleMenu);
+}
 
-    // Fecha o menu ao clicar em qualquer link (para navegação no mobile)
-    menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            document.body.classList.remove('menu-expanded');
-        });
+// Fecha o menu ao clicar em qualquer link (para navegação no mobile)
+menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        // Usa o .remove() para garantir que o menu feche após a navegação
+        document.body.classList.remove('menu-expanded');
     });
+});
 
-    // 2. Função para mudar o estilo do NAV ao rolar a página
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 0) {
-            nav.classList.add('scroll');
-        } else {
-            nav.classList.remove('scroll');
-        }
-    });
 
-    // Adiciona a classe 'scroll' no carregamento se a página já estiver rolada
-    window.onload = () => {
-        if (window.scrollY > 0) {
-            nav.classList.add('scroll');
-        }
-    };
+// ===============================================
+// 2. FUNÇÃO PARA MUDAR O ESTILO NAV AO ROLAR
+// ===============================================
+
+function showNavOnScroll() {
+    // Simplificado: .toggle é mais limpo que if/else
+    nav.classList.toggle('scroll', window.scrollY > 0);
+}
+
+// Adiciona evento de scroll
+window.addEventListener('scroll', showNavOnScroll);
+
+// Adiciona a classe 'scroll' no carregamento se a página já estiver rolada
+window.addEventListener('load', showNavOnScroll);
+
+// Chama a função imediatamente para verificar o estado inicial (importante!)
+showNavOnScroll();
 </script>
     </body>
 
 </html>
+
 
