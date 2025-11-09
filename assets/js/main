@@ -42,10 +42,10 @@ function onScroll() {
   showNavOnScroll();
   showBackToTopButtonOnScroll();
 
-  activateMenuAtCurrentSection(about);
-  activateMenuAtCurrentSection(projects);
-  activateMenuAtCurrentSection(knowledge);
-  activateMenuAtCurrentSection(contact);
+ activateMenuAtCurrentSection(document.querySelector("#about"));
+activateMenuAtCurrentSection(document.querySelector("#projects"));
+activateMenuAtCurrentSection(document.querySelector("#knowledge"));
+activateMenuAtCurrentSection(document.querySelector("#contact"));
 }
 
 function activateMenuAtCurrentSection(section) {
