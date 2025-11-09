@@ -126,7 +126,6 @@ menuLinks.forEach((link) => {
     link.addEventListener("click", closeMenu);
 });
 
-
 // ===================== SCROLL REVEAL =====================
 
 ScrollReveal({
