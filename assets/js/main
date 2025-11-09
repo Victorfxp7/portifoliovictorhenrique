@@ -27,14 +27,16 @@ window.addEventListener("load", function begin() {
 window.addEventListener("scroll", onScroll);
 onScroll();
 
-window.onload = setTimeout(() => {
-  notebook_1.style.opacity = 0;
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    notebook_1.style.opacity = 0;
+    notebook_1.style.animation = "none";
+    notebook_2.style.animation = "none";
+    notebook_2_white.style.animation = "none";
+    vidro.style.animation = "none";
+  }, 4000);
+});
 
-  notebook_1.style.animation = "none";
-  notebook_2.style.animation = "none";
-  notebook_2_white.style.animation = "none";
-  vidro.style.animation = "none";
-}, 4000);
 
 function onScroll() {
   showNavOnScroll();
