@@ -107,97 +107,120 @@
         cursor: pointer;
     }
 
-    /* --- MENU MOBILE (PADRÃO) --- */
-    nav .menu,
-    nav .close-menu {
-        position: fixed;
-    }
+   /* Definição de Variáveis de Cor (Ajuste estas no seu CSS principal se necessário) */
+/* :root {
+    --bg-dark-opaco: rgba(18, 18, 18, 0.95);
+    --text-primary: #f5f5f5;
+    --brand-color: #00BFFF; // Um azul vibrante para destaque
+} */
 
-    body.menu-expanded {
-        overflow: hidden;
-    }
+/* =============================================== */
+/* MENU MOBILE & TRANSITIONS (Melhoria Visual) */
+/* =============================================== */
 
-    .menu,
-    .close-menu,
-    body.menu-expanded .open-menu {
-        opacity: 0;
-        visibility: hidden;
-    }
-
-    body.menu-expanded .menu,
-    body.menu-expanded .close-menu {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .menu {
-        transform: translateX(100%);
-    }
-
-    body.menu-expanded .menu,
-    body.menu-expanded nav.scroll .menu {
-        top: 0;
-        left: 0;
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(1rem);
-        -webkit-backdrop-filter: blur(1rem);
-        width: 100vw;
-        height: 100vh;
-        padding-top: var(--nav-height);
-        transition: transform 300ms;
-        transform: translateX(0);
-    }
-
-    .menu ul:nth-child(1) {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-        margin: 8rem 0 10rem 0;
-        font-weight: 700;
-        font-size: 2rem;
-        line-height: 3.1rem;
-        list-style: none;
-        padding: 0;
-    }
+/* Menu quando está na tela */
+body.menu-expanded .menu {
+    top: 0;
+    right: 0;
     
-    .menu ul:nth-child(1) li a {
-        color: var(--primary);
-        text-decoration: none;
-    }
-
-    body.menu-expanded nav .logo,
-    body.menu-expanded button {
-        position: relative;
-        z-index: 100;
-    }
-
-    body.menu-expanded button path {
-        stroke: white;
-    }
+    /* 1. MELHORIA NO BACKGROUND (Mais escuro e opaco) */
+    background: var(--bg-dark-opaco, rgba(18, 18, 18, 0.95)); 
+    backdrop-filter: blur(15px); /* Efeito blur ligeiramente mais forte */
+    -webkit-backdrop-filter: blur(15px);
     
-    /* --- LINKS SOCIAIS (Mobile e Desktop) --- */
-    .social-links {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 2.5rem;
-        list-style: none;
-        padding: 0;
-    }
+    width: 100vw;
+    height: 100vh;
+    z-index: 95;
+    padding: 0; /* Remove o padding-top anterior */
+    
+    /* Garante transição suave */
+    transition: transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Curva de animação mais elegante */
+    transform: translateX(0);
+}
 
-    .social-links li {
-        height: 3rem;
-    }
+/* 2. ESTILO DOS LINKS: Limpeza e Destaque */
+.menu ul:nth-child(1) { /* Idealmente, use uma classe aqui, como .menu-links */
+    list-style: none;
+    padding: 12rem 4rem 4rem; /* Espaçamento maior no topo para dar espaço ao cabeçalho */
+    margin: 0; 
+    
+    display: flex;
+    flex-direction: column;
+    gap: 4rem; /* Espaçamento vertical AUMENTADO para toque fácil */
+    
+    font-weight: 500; /* Peso da fonte ligeiramente mais leve (moderno) */
+    font-size: 2.4rem; /* Texto maior para acessibilidade */
+    line-height: 1.2;
+}
+    
+.menu ul:nth-child(1) li a {
+    display: block;
+    padding: 1rem 0; /* Grande área de clique */
+    
+    color: var(--text-primary, #f5f5f5); /* Texto branco-sujo para contraste suave */
+    text-decoration: none;
+    transition: color 250ms ease;
+    
+    /* 3. EFEITO DE HOVER SIMPLES E ELEGANTE */
+    position: relative;
+}
 
-    .social-links svg {
-        margin-top: 0.3rem;
-        transition: 300ms;
-    }
+.menu ul:nth-child(1) li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--brand-color, #00BFFF);
+    transition: width 300ms ease;
+}
 
-    .social-links svg:hover {
-        margin-top: 0;
-        margin-bottom: 0.3rem;
-    }
+.menu ul:nth-child(1) li a:hover::after,
+.menu ul:nth-child(1) li a:focus::after {
+    width: 100%; /* Linha inferior aparece no hover */
+}
+
+.menu ul:nth-child(1) li a:hover {
+    color: var(--brand-color, #00BFFF); /* Cor de destaque ao interagir */
+}
+
+/* =============================================== */
+/* BOTÕES DE CONTROLE (Z-Index e Posição) */
+/* =============================================== */
+.open-menu, .close-menu {
+    /* Garante que os botões (como o X para fechar) estejam sempre acima */
+    z-index: 100; 
+    cursor: pointer;
+}
+
+/* Para o ícone (SVG) de fechar */
+body.menu-expanded button path {
+    stroke: var(--text-primary, white); 
+    transition: stroke 300ms;
+}
+
+/* =============================================== */
+/* LINKS SOCIAIS (Melhoria Visual) */
+/* =============================================== */
+.social-links {
+    margin-top: 6rem; /* Garante que haja distância dos links principais */
+    gap: 3.5rem; /* Espaçamento dos ícones */
+}
+
+.social-links svg {
+    /* Tamanho e cor do ícone */
+    width: 30px; 
+    height: 30px;
+    fill: var(--text-primary, #f5f5f5);
+    transition: transform 300ms ease, fill 300ms;
+}
+
+.social-links svg:hover {
+    /* Efeito de zoom mais suave e troca de cor */
+    transform: scale(1.2); 
+    fill: var(--brand-color, #00BFFF);
+}
 
     /* =============================================== */
     /* LAYOUT DESKTOP (Menu Centralizado) */
@@ -688,4 +711,5 @@
     };
 </script>
     </body>
+
 </html>
