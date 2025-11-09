@@ -12,8 +12,7 @@
 
 :root {
   --hue: 90;
-  --primary-color: #CD853F;
-  --primary-hover: #8B4513;
+  --primary-color: #bcbcbc;
   --secundary-color: #000;
   --third-color: hsla(0, 0%, 100%, 0.1);
   --bg-color: hsl(0, 0%, 8%);
