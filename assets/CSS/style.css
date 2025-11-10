@@ -680,6 +680,14 @@ body.light-mode #home img#notebook-2-white {
   transition: 600ms;
 }
 
+.ai-image {
+  font-size: 1.2rem;
+  color: var(--paragraph);
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+  opacity: 0.3;
+}
 /*===== PROJECTS ===============================================*/
 
 #projects {
