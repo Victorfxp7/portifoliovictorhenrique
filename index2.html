@@ -451,6 +451,38 @@
     .side .section .meta {
         line-height: 1.6;
     }
+
+    
+    /* ESTILO DO BOTÃO DE DOWNLOAD DO CV */
+
+    .btn-download {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #3c4e43;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+ .btn-download2 {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #484d4a;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-download:hover {
+    background: #959595;
+}
+.btn-download2:hover {
+    background: hwb(0 66% 34%);
+
 </style>
 </head>
 <body>
@@ -557,6 +589,16 @@
                 </section>
             </main>
 
+            <aside class="side">
+                <div class="section">
+                    <a class="btn-download" href=".assets/cv/Baixar Currículo - Victor Henrique.pdf" download="Baixar Currículo - Victor Henrique">
+                    Baixar CV Interativo
+                    </a>
+                    <div></div>
+                    <a class="btn-download2" href=".assets/cv/Baixar Currículo - Victor Henrique.docx" download="Baixar Currículo - Victor Henrique">
+                    Baixar CV Padrão
+                    </a>
+            
             <aside class="side">
                 <div class="section">
                     <h3>Contato</h3>
@@ -714,6 +756,7 @@ showNavOnScroll();
     </body>
 
 </html>
+
 
 
 
